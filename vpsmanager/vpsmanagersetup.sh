@@ -50,35 +50,35 @@ killall apache2
 apt-get purge apache2 -y
 if [ -d "/etc/squid3/" ]
 then
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/squid1.text -O /tmp/sqd1
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/squid1.text -O /tmp/sqd1
 	echo "acl url3 dstdomain -i $ipdovps" > /tmp/sqd2
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/squid2.text -O /tmp/sqd3
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/squid2.text -O /tmp/sqd3
 	cat /tmp/sqd1 /tmp/sqd2 /tmp/sqd3 > /etc/squid3/squid.conf
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/payload.text -O /etc/squid3/payload.txt
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/payload.text -O /etc/squid3/payload.txt
 	echo " " >> /etc/squid3/payload.txt
 	grep -v "^Port 443" /etc/ssh/sshd_config > /tmp/ssh && mv /tmp/ssh /etc/ssh/sshd_config
 	echo "Port 443" >> /etc/ssh/sshd_config
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/addhost.sh -O /bin/addhost
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/addhost.sh -O /bin/addhost
 	chmod +x /bin/addhost
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/alterarsenha.sh -O /bin/alterarsenha
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/alterarsenha.sh -O /bin/alterarsenha
 	chmod +x /bin/alterarsenha
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/criarusuario2.sh -O /bin/criarusuario
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/criarusuario2.sh -O /bin/criarusuario
 	chmod +x /bin/criarusuario
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/delhost.sh -O /bin/delhost
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/delhost.sh -O /bin/delhost
 	chmod +x /bin/delhost
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/expcleaner2.sh -O /bin/expcleaner
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/expcleaner2.sh -O /bin/expcleaner
 	chmod +x /bin/expcleaner
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/mudardata.sh -O /bin/mudardata
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/mudardata.sh -O /bin/mudardata
 	chmod +x /bin/mudardata
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/remover.sh -O /bin/remover
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/remover.sh -O /bin/remover
 	chmod +x /bin/remover
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/sshlimiter2.sh -O /bin/sshlimiter
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/sshlimiter2.sh -O /bin/sshlimiter
 	chmod +x /bin/sshlimiter
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/alterarlimite.sh -O /bin/alterarlimite
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/alterarlimite.sh -O /bin/alterarlimite
 	chmod +x /bin/alterarlimite
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/ajuda.sh -O /bin/ajuda
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/ajuda.sh -O /bin/ajuda
 	chmod +x /bin/ajuda
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/sshmonitor2.sh -O /bin/sshmonitor
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/sshmonitor2.sh -O /bin/sshmonitor
 	chmod +x /bin/sshmonitor
 	if [ ! -f "/etc/init.d/squid3" ]
 	then
@@ -95,35 +95,35 @@ then
 fi
 if [ -d "/etc/squid/" ]
 then
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/squid1.text -O /tmp/sqd1
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/squid1.text -O /tmp/sqd1
 	echo "acl url3 dstdomain -i $ipdovps" > /tmp/sqd2
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/squid.text -O /tmp/sqd3
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/squid.text -O /tmp/sqd3
 	cat /tmp/sqd1 /tmp/sqd2 /tmp/sqd3 > /etc/squid/squid.conf
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/payload.text -O /etc/squid/payload.txt
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/payload.text -O /etc/squid/payload.txt
 	echo " " >> /etc/squid/payload.txt
 	grep -v "^Port 443" /etc/ssh/sshd_config > /tmp/ssh && mv /tmp/ssh /etc/ssh/sshd_config
 	echo "Port 443" >> /etc/ssh/sshd_config
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/2/addhost.sh -O /bin/addhost
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/2/addhost.sh -O /bin/addhost
 	chmod +x /bin/addhost
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/alterarsenha.sh -O /bin/alterarsenha
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/alterarsenha.sh -O /bin/alterarsenha
 	chmod +x /bin/alterarsenha
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/criarusuario2.sh -O /bin/criarusuario
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/criarusuario2.sh -O /bin/criarusuario
 	chmod +x /bin/criarusuario
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/2/delhost.sh -O /bin/delhost
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/2/delhost.sh -O /bin/delhost
 	chmod +x /bin/delhost
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/expcleaner2.sh -O /bin/expcleaner
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/expcleaner2.sh -O /bin/expcleaner
 	chmod +x /bin/expcleaner
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/mudardata.sh -O /bin/mudardata
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/mudardata.sh -O /bin/mudardata
 	chmod +x /bin/mudardata
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/remover.sh -O /bin/remover
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/remover.sh -O /bin/remover
 	chmod +x /bin/remover
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/sshlimiter2.sh -O /bin/sshlimiter
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/sshlimiter2.sh -O /bin/sshlimiter
 	chmod +x /bin/sshlimiter
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/alterarlimite.sh -O /bin/alterarlimite
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/alterarlimite.sh -O /bin/alterarlimite
 	chmod +x /bin/alterarlimite
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/ajuda.sh -O /bin/ajuda
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/ajuda.sh -O /bin/ajuda
 	chmod +x /bin/ajuda
-	wget http://aacplusbrasil.com.br/source/ssh/GRT11111/314519/sshmonitor2.sh -O /bin/sshmonitor
+	wget https://raw.githubusercontent.com/marceloccms/ssh/master/vpsmanager/sshmonitor2.sh -O /bin/sshmonitor
 	chmod +x /bin/sshmonitor
 	if [ ! -f "/etc/init.d/squid" ]
 	then

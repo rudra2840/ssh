@@ -1,0 +1,158 @@
+• Instalação do Painel 3.0 BY Junior Rios - SalvadorSucessos Duvidas? Salvadorsucessos@gmail.com ou Pservers.com.br
+
+-----------------------------> ATENÇÃO IMPORTANTE
+• Sempre que solicitado [Y/N] escolha a opção Y (Sim para Todos).   
+• Sempre que solicitado digite sempre a mesma senha de sua preferencia para o PHPmyadmin e Apache caso solicite (letras e numeros, não use caracteres especiais ou espaço)  
+• Para a seleção do servidor, escolha apache2.
+• Selecione Sim quando perguntado se deseja usar dbconfig-common para configurar o banco de dados.  
+
+• Sistemas Funcionais: Debian 8+ Ubuntu 16+
+
+1 - Vamos instalar o Apache 
+
+• Instalação Manual na VPS DO Painel (Site + BD):
+
+Digite os Comandos 1 por 1 e aguarde instalar essa instalação é mais precisa pois se ocorrer erro você saberá em qual parte foi.
+apt-get update && apt-get upgrade -y
+apt-get install curl -y
+apt-get install apache2 -y
+apt-get install php5 libapache2-mod-php5 php5-mcrypt -y
+service apache2 restart 
+apt-get install mysql-server
+mysql_install_db
+mysql_secure_installation
+apt-get install phpmyadmin -y
+php5enmod mcrypt
+service apache2 restart
+ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
+apt-get install libssh2-1-dev libssh2-php -y
+mysql -h localhost -u root -proot -e "CREATE DATABASE ssh"
+php -m |grep ssh2
+service apache2 restart
+
+• Agora pelo Gerenciador de Pastas do Bitvise ou o Gerenciador da VPS Que você utiliza volte para o /root:
+• Navegue até a pasta /var/www/html e passe o site painelssh.zip tire tudo que tiver dentro e extraia o painelssh.zip
+
+• Ou após copiar para a pasta digite esses comandos
+
+cd /var/www/html
+apt-get install unzip -y
+unzip painelssh.zip
+rm painelssh.zip index.html
+clear
+
+• Instalação Automatica (Pode haver problemas de instalação de mysql_server e ter que instalar manualmente) :
+
+• Copie o Arquivo installpainel.sh e painelssh.zip para a pasta root do servidor.
+
+Digite os comandos abaixo: 
+
+bash installpainel 
+
+• Continue somente apos aparecer a mensagem COMPLETADO COM SUCESSO.  (no caso da instalação automatica)
+
+Digite service apache2 restart
+
+2 - Criar o Banco de Dados SSH (para armazenar os dados do painel e tornar funcional)
+
+• Altere o comando abaixo trocando SUA_SENHA pela senha que voce esta utilizando, o -p deve ficar junto a sua senha sem espaço
+ 
+• Caso você tenha usado caracteres especiais nesta parte o comando dara erro.
+
+• OBS: A Senha que você definiu no PHPMYADMIN e MYSQL  
+ 
+mysql -h localhost -u root -pSUA_SENHA -e "CREATE DATABASE ssh"  
+ 
+service apache2 restart
+ 
+3 - Configurar arquivo de acesso ao Banco de Dados  
+nano /var/www/html/pages/system/pass.php
+
+• Ou baixe o arquivo para seu computador  da pasta do seu servidor e edite a senha que está no arquivo pela senha do seu PHPMYADMIN
+ 
+• O comando edita pass.php caso tenha instalado o nano caso contrario digite apt-get install nano no servidor
+
+<?php $pass = 'SUA_SENHA';?> < Essa parte do arquivo Pass.php deve ser trocada SUA_SENHA Pela sua senha do PHPMYADMIN
+
+• Copie o codigo acima e cole na edição do arquivo pass.php caso o mesmo não tenha nada
+
+• Apos colar o comando aperte Ctrl+X e escola opção Y depois aperte Enter para salvar
+
+4 - Configurar Tabelas do Banco de Dados
+ 
+• Acesse o IP da sua VPS/phpmyadmin e entre com o usuario root e a senha que você definiu na instalação.
+
+• Faça upload do arquivo Bancodedados.sql no banco SSH 
+
+5 - Configurarando comando de Agendamento Crontab 
+
+• Para funcionar online e deletar usuarios dos servidores que você cadastrar no painel
+
+Dentro da VPS digite crontab -e
+
+• Apos inserir o comando acima vai abrir um documento para edição, copie o texto abaixo
+ 
+ESCOLHA A OPÇÃO NANO
+
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.php
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.ssh.php
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.sms.php
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.online.ssh.php
+10 * * * * /usr/bin/php /var/www/html/pages/system/cron.servidor.php
+
+• Entendendo o Agendador de tarefas (Crontab) 
+Cada * Significa que o servidor executará a todo momento o arquivo php com os codigos para atualização de contas,online apagar
+o primeiro é minuto,hora,dia do mês,mês e dia da semana por exemplo o ultimo o script cron.servidor.php rodará a cada 10 minutos de todos os dias e todos os mêses de todas semanas.
+Você pode alterar por sua conta e risco o agendamento.
+
+• Apos colar o comando aperte Ctrl+X e escola opção Y depois aperte Enter para salvar novamente
+
+6 - Alterando a Data e a Hora do servidor para o Brasil
+ 
+dpkg-reconfigure tzdata  
+
+• Escolher opção America e depois São Paulo.  
+ 
+service apache2 restart
+
+---------------> FINAL
+ 
+• Pronto agora seu painel ja esta pronto, voce pode logar da seguinte forma:  IP_DOMINIO-VPS/admin/  Usuario: admin  Senha: admin
+ 
+• Voce pode alterar os dados de login em configurações no painel de gerenciamento.
+ 
+• Lembrando que ainda falta configurar a VPS que sera o servidor ssh. O painel pre-configura o servidor mas e preciso executar outros comandos
+
+• Aponte um dominio ao Gerenciador de DNS Da sua VPS para poder acessar através do dominio
+
+OBSERVAÇÃO : 
+
+• Para o servidor onde estará as contas é preciso do VPS Manager do PHReaker 56
+
+Na VPS do painel você instala somente o servidor sem o full pois ele instala um script de outro site já offline !
+
+Após adicionar a VPS no painel entre nela e instale o VPSmanager
+
+wget http://phreaker56.xyz/vpsmanager/vpsmanagersetup.sh
+chmod +x vpsmanagersetup.sh
+./vpsmanagersetup.sh
+
+Só esperar terminar feito isso já pode usar o painel tranquilamente cadastrar revendedores e etç!!
+
+• Você pode instalar o mesmo servidor para as contas SSH Porém não funcionará na porta 80 pois a mesma o apache está usando terá que configurar para o apache usar a porta 8080 ou usar a porta 8080 para o squid3
+
+
+• Tutorial Atualizado pela PServers - SalvadorSucessos - JuniorRios 26/06 - 2017 Não me Responsabilizo por mau uso do tutorial
+
+
+
+
+
+
+
+
+
+
+
+
+

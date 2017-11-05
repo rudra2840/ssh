@@ -6,6 +6,7 @@ VPS Manager
 O VPS Manager é conjunto de scripts feitos pra configurar automaticamente Proxy Squid e OpenSSH em servidores Linux, além de instalar comandos para facilitar o gerenciamento de usuários. Documentação: VPS Manager 2.0 - Documentação.pdf
 
 Versão 1.0 
+
 wget http://pastebin.com/raw/hMU40FtW && bash hMU40FtW && bash install
 vpspack
 
